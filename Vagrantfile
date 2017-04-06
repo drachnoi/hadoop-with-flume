@@ -3,10 +3,8 @@
 
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.network "forwarded_port", guest: 8088, host: 8088
-  config.vm.network "forwarded_port", guest: 8042, host: 8042
-  config.vm.network "forwarded_port", guest: 9000, host: 9000
-  config.vm.network "forwarded_port", guest: 50070, host: 50070
+
+  config.vm.network "private_network", ip: "192.168.33.15"
 
   # r10k plugin to deploy puppet modules
   config.r10k.puppet_dir = "provision"
@@ -17,5 +15,11 @@ Vagrant.configure("2") do |config|
      puppet.manifests_path = "provision/manifests"
      puppet.manifest_file  = "init.pp"
      puppet.module_path = ["provision/vendor-modules", "provision/private-modules"]
+     puppet.facter = {
+       "fqdn" => "192.168.33.15",
+       "ipaddress" => "192.168.33.15"
+     }
   end
+
+    config.vm.provision "shell", inline: "ip route replace 192.168.0.1 dev eth0"
 end
