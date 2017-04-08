@@ -6,3 +6,6 @@
 
 provision/vendor-modules/*
 !/provision/vendor-modules/.gitkeep
+
+examples/*
+!examples/.gitkeep
