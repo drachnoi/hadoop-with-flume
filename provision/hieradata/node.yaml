@@ -1,0 +1,4 @@
+flume::consumer_key : "your consumer key"
+flume::consumer_key_secret : "your consumer key secret"
+flume::access_token: "your access token"
+flume::access_token_secret : "your access token secret"
