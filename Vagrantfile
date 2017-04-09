@@ -14,6 +14,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision :puppet do |puppet|
      puppet.manifests_path = "provision/manifests"
      puppet.manifest_file  = "init.pp"
+     puppet.hiera_config_path = "provision/hiera.yml"
+     puppet.working_directory = "/vagrant/provision"
      puppet.module_path = ["provision/vendor-modules", "provision/private-modules"]
      puppet.facter = {
        "fqdn" => "192.168.33.15",
