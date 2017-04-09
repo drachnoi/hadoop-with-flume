@@ -25,5 +25,6 @@ class flume (
   file { '/home/hadoop/apache-flume-1.7.0-bin/conf/flume-conf.properties':
     ensure  => file,
     content => template('flume/flume-conf.properties.erb'),
+    require => Exec['unpack flume']
   }
 }
