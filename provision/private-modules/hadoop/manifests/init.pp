@@ -5,7 +5,7 @@ class hadoop {
     path    => $path,
     user    => $user,
     group   => $user,
-    unless  => "ls ${install_dir} | grep hadoop-2.7.3",
+    unless  => "ls ${install_dir} | grep hadoop--3.0.0-alpha1",
   }
 
   exec { 'unpack hadoop' :
@@ -13,7 +13,7 @@ class hadoop {
     path    => $path,
     user    => $user,
     group   => $user,
-    creates => "${hadoop_home}-2.7.3",
+    creates => "${hadoop_home}--3.0.0-alpha1",
     require => Exec['download hadoop'],
   }
 
