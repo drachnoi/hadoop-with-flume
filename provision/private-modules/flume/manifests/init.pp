@@ -10,7 +10,6 @@ class flume (
     path    => $path,
     user    => $user,
     group   => $user,
-    unless  => "ls ${install_dir} | grep apache-flume-1.7.0-bin",
   }
 
   exec { 'unpack flume' :
