@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 #^syntax detection
 
-mod 'puppetlabs-apt', :git => 'https://github.com/puppetlabs/puppetlabs-apt.git'
+mod 'puppetlabs-apt', :git => 'https://github.com/puppetlabs/puppetlabs-apt.git', :ref => '2.4.0'
 mod 'puppetlabs-stdlib', :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
 mod 'deric-java_binary', :git => 'https://github.com/deric/puppet-java.git'
