@@ -5,11 +5,12 @@ class flume (
   $access_token_secret = undef,
   $user                = undef,
   $install_dir         = undef,
-  $flume_home          = undef
+  $flume_home          = undef,
+  $download_mirror     = undef
   ){
 
   exec { 'download flume' :
-    command => 'wget -O /tmp/flume.tar.gz http://xenia.sote.hu/ftp/mirrors/www.apache.org/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz',
+    command => "wget -O /tmp/flume.tar.gz ${download_mirror}",
     path    => $path,
     user    => $user,
     group   => $user,

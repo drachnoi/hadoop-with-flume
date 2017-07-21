@@ -1,11 +1,12 @@
 class hadoop (
-    $user        = undef,
-    $install_dir = undef,
-    $hadoop_home = undef,
+    $user             = undef,
+    $install_dir      = undef,
+    $hadoop_home      = undef,
+    $download_mirror  = undef
   ){
 
   exec { 'download hadoop' :
-    command => 'wget -O /tmp/hadoop.tar.gz http://xenia.sote.hu/ftp/mirrors/www.apache.org/hadoop/common/hadoop-3.0.0-alpha1/hadoop-3.0.0-alpha1.tar.gz',
+    command => "wget -O /tmp/hadoop.tar.gz ${download_mirror}",
     path    => $path,
     user    => $user,
     group   => $user,
