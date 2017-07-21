@@ -29,4 +29,10 @@ class flume (
     content => template('flume/flume-conf.properties.erb'),
     require => Exec['unpack flume'],
   }
+
+  file { '/home/hadoop/apache-flume-1.7.0-bin/conf/flume-env.sh' :
+    ensure  => file,
+    content => template('flume/flume-env.sh.erb'),
+    require => Exec['unpack flume'],
+  }
 }
