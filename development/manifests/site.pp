@@ -13,7 +13,7 @@ file { "/home/${user}" :
   ensure  => directory,
   owner   => $user,
   group   => $group,
-  mode    => 700,
+  mode    => '0700',
   require =>  [ User[$user], Group[$group] ],
 }
 
@@ -31,17 +31,10 @@ user { $user :
   gid        => $group,
 }
 
-apt::ppa { 'ppa:webupd8team/java': }
-
 exec { 'apt-get update' :
   command => '/usr/bin/apt-get update',
-  require => [ Apt::Ppa['ppa:webupd8team/java'] ],
 }
 
-class { 'java_binary' :
-  repository            => 'webupd8team',
-  distribution          => 'oracle',
-  release               => 'java8',
-  accept_oracle_license => true,
-  require               => Exec['apt-get update']
+class { 'java' :
+  require => Exec['apt-get update'],
 }

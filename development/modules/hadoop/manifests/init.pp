@@ -14,28 +14,26 @@ class hadoop {
     user    => $user,
     group   => $user,
     creates => "${hadoop_home}-3.0.0-alpha1",
-    require => Exec['download hadoop'],
   }
 
-  file { "/var/lib" :
+  file { '/var/lib' :
     ensure  => directory,
     owner   => $user,
     group   => $user,
-    mode    => 777,
-	  require => [ Exec['apt-get update'] ],
+    mode    => '0777',
   }
 
-  file { "/var/lib/hadoop" :
+  file { '/var/lib/hadoop' :
     ensure  => directory,
     owner   => $user,
     group   => $user,
-    mode    => 777,
-	  require => [ Exec['apt-get update'], File["/var/lib"] ],
+    mode    => '0777',
+	  require => File["/var/lib"],
   }
 
   file { "${hadoop_home}-3.0.0-alpha1/etc/hadoop/core-site.xml" :
     source  => 'puppet:///modules/hadoop/core-site.xml',
-    mode    => 644,
+    mode    => '0644',
     owner   => $user,
     group   => $user,
     require => Exec['unpack hadoop'],
@@ -43,7 +41,7 @@ class hadoop {
 
   file { "${hadoop_home}-3.0.0-alpha1/etc/hadoop/mapred-site.xml" :
     source  => 'puppet:///modules/hadoop/mapred-site.xml',
-    mode    => 644,
+    mode    => '0644',
     owner   => $user,
     group   => $user,
     require => Exec['unpack hadoop'],
@@ -51,7 +49,7 @@ class hadoop {
 
    file { "${hadoop_home}-3.0.0-alpha1/etc/hadoop/hdfs-site.xml" :
     source  => 'puppet:///modules/hadoop/hdfs-site.xml',
-    mode    => 644,
+    mode    => '0644',
     owner   => $user,
     group   => $user,
     require => Exec['unpack hadoop'],
@@ -59,7 +57,7 @@ class hadoop {
 
   file { "${hadoop_home}-3.0.0-alpha1/etc/hadoop/hadoop-env.sh" :
     source  => 'puppet:///modules/hadoop/hadoop-env.sh',
-    mode    => 644,
+    mode    => '0644',
     owner   => $user,
     group   => $user,
     require => Exec['unpack hadoop'],

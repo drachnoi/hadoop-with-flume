@@ -4,14 +4,14 @@ class ssh {
     ensure  => directory,
     owner   => $user,
     group   => $user,
-    mode    => 750,
+    mode    => '0750',
 	  require => [File["/home/${user}"] ],
   }
 
   file { "/home/${user}/.ssh/id_rsa" :
     source  => 'puppet:///modules/ssh/id_rsa',
     ensure  => present,
-    mode    => 600,
+    mode    => '0600',
     owner   => $user,
     group   => $user,
     require => File["/home/${user}/.ssh"],
@@ -20,18 +20,18 @@ class ssh {
   file { "/home/${user}/.ssh/id_rsa.pub" :
     source  => 'puppet:///modules/ssh/id_rsa.pub',
     ensure  => present,
-    mode    => 644,
+    mode    => '0644',
     owner   => $user,
     group   => $user,
     require => File["/home/${user}/.ssh"],
   }
 
   file { "/home/${user}/.ssh/authorized_keys" :
-    source => 'puppet:///modules/ssh/id_rsa.pub',
-    ensure => present,
-    mode => 600,
-    owner => $user,
-    group => $user,
+    source  => 'puppet:///modules/ssh/id_rsa.pub',
+    ensure  => present,
+    mode    => '0600',
+    owner   => $user,
+    group   => $user,
     require => File["/home/${user}/.ssh"],
   }
 
@@ -44,9 +44,9 @@ class ssh {
   }
 
   file { "/home/${user}/.ssh/config" :
-    owner => $user,
-    group => $group,
-    mode => 755,
+    owner   => $user,
+    group   => $group,
+    mode    => '0755',
     content => 'StrictHostKeyChecking no',
     require => File["/home/${user}/.ssh/id_rsa.pub"],
   }
