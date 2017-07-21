@@ -5,7 +5,6 @@ $hadoop_home = "${install_dir}/hadoop"
 $flume_home = "${install_dir}/flume"
 
 include apt
-include ssh
 include hadoop
 include flume
 
@@ -37,4 +36,11 @@ exec { 'apt-get update' :
 
 class { 'java' :
   require => Exec['apt-get update'],
+}
+
+ssh_keygen { $user: }
+
+exec { "copy public key" :
+  command => "/bin/cp /home/${user}/.ssh/id_rsa.pub /home/${user}/.ssh/authorized_keys",
+  require => [Ssh_keygen[$user], File["/home/${user}"] ],
 }
