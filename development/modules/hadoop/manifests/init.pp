@@ -1,4 +1,8 @@
-class hadoop {
+class hadoop (
+    $user        = undef,
+    $install_dir = undef,
+    $hadoop_home = undef,
+  ){
 
   exec { 'download hadoop' :
     command => 'wget -O /tmp/hadoop.tar.gz http://xenia.sote.hu/ftp/mirrors/www.apache.org/hadoop/common/hadoop-3.0.0-alpha1/hadoop-3.0.0-alpha1.tar.gz',

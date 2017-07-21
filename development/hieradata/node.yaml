@@ -1,3 +1,8 @@
+---
+user : "hadoop"
+group : "hadoop"
+install_dir : "/home/hadoop"
+
 flume::consumer_key : "your consumer key"
 flume::consumer_key_secret : "your consumer key secret"
 flume::access_token: "your access token"

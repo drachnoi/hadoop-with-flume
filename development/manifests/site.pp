@@ -1,46 +1,55 @@
-$user = "hadoop"
-$group = "hadoop"
-$install_dir = "/home/${user}"
-$hadoop_home = "${install_dir}/hadoop"
-$flume_home = "${install_dir}/flume"
+node 192.168.33.15 {
+  $user = hiera('user')
+  $group = hiera('group')
+  $install_dir = hiera('install_dir')
 
-include apt
-include hadoop
-include flume
+  include apt
 
-file { "/home/${user}" :
-  ensure  => directory,
-  owner   => $user,
-  group   => $group,
-  mode    => '0700',
-  require =>  [ User[$user], Group[$group] ],
-}
+  class { 'hadoop' :
+    user        => $user,
+    install_dir => $install_dir,
+    hadoop_home => "${install_dir}/hadoop"
+  }
 
-group { $group :
-  ensure => 'present',
-}
+  class { 'flume' :
+    user        => $user,
+    install_dir => $install_dir,
+    flume_home  => "${install_dir}/flume"
+  }
 
-user { $user :
-  ensure     => 'present',
-  home       => "/home/${user}",
-  name       => $user,
-  shell      => '/bin/bash',
-  password   => 'hadoop',
-  managehome => true,
-  gid        => $group,
-}
+  file { "/home/${user}" :
+    ensure  => directory,
+    owner   => $user,
+    group   => $group,
+    mode    => '0700',
+    require =>  [ User[$user], Group[$group] ],
+  }
 
-exec { 'apt-get update' :
-  command => '/usr/bin/apt-get update',
-}
+  group { $group :
+    ensure => 'present',
+  }
 
-class { 'java' :
-  require => Exec['apt-get update'],
-}
+  user { $user :
+    ensure     => 'present',
+    home       => "/home/${user}",
+    name       => $user,
+    shell      => '/bin/bash',
+    password   => 'hadoop',
+    managehome => true,
+    gid        => $group,
+  }
+  exec { 'apt-get update' :
+    command => '/usr/bin/apt-get update',
+  }
 
-ssh_keygen { $user: }
+  class { 'java' :
+    require => Exec['apt-get update'],
+  }
 
-exec { "copy public key" :
-  command => "/bin/cp /home/${user}/.ssh/id_rsa.pub /home/${user}/.ssh/authorized_keys",
-  require => [Ssh_keygen[$user], File["/home/${user}"] ],
+  ssh_keygen { $user: }
+
+  exec { "copy public key" :
+    command => "/bin/cp /home/${user}/.ssh/id_rsa.pub /home/${user}/.ssh/authorized_keys",
+    require => [Ssh_keygen[$user], File["/home/${user}"] ],
+  }
 }

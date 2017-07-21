@@ -3,6 +3,9 @@ class flume (
   $consumer_key_secret = undef,
   $access_token        = undef,
   $access_token_secret = undef,
+  $user                = undef,
+  $install_dir         = undef,
+  $flume_home          = undef
   ){
 
   exec { 'download flume' :
