@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.33.15"
   config.vm.hostname = "master"
 
+  config.vm.provision "shell", path: "vendor-modules.sh"
+
   config.vm.provision :puppet do |puppet|
     puppet.environment = "development"
     puppet.environment_path = "."
