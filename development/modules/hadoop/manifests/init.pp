@@ -61,7 +61,7 @@ class hadoop (
    }
 
   file { "${hadoop_home}-3.0.0-alpha1/etc/hadoop/hadoop-env.sh" :
-    content => template('flume/flume-env.sh.erb'),
+    content => template('hadoop/hadoop-env.sh.erb'),
     mode    => '0644',
     owner   => $user,
     group   => $user,
