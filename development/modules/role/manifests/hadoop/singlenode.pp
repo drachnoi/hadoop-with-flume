@@ -8,11 +8,11 @@ class role::hadoop::singlenode (
 
     class { 'profile::hadoop::hadoop' :
       user        => $user,
-      install_dir => $install_dir
+      install_dir => $install_dir,
     }
 
     class { 'profile::flume::flume' :
       user        => $user,
-      install_dir => $install_dir
+      install_dir => $install_dir,
     }
 }
