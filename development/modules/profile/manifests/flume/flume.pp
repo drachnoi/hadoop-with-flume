@@ -4,8 +4,7 @@ class profile::flume::flume (
   ) {
 
   class { 'flume' :
-    user        => $user,
-    install_dir => $install_dir,
-    flume_home => "${install_dir}/flume"
+    user             => $user,
+    install_dir_path => $install_dir,
   }
 }

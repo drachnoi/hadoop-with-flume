@@ -4,10 +4,12 @@ class flume (
   $access_token        = undef,
   $access_token_secret = undef,
   $user                = undef,
-  $install_dir         = undef,
-  $flume_home          = undef,
-  $download_mirror     = undef
+  $download_mirror     = undef,
+  $install_dir_path    = undef,
+  $flume_dir_name      = undef
   ){
+
+  $flume_home = "${install_dir_path}/${flume_dir_name}"
 
   exec { 'download flume' :
     command => "wget -O /tmp/flume.tar.gz ${download_mirror}",
@@ -17,21 +19,21 @@ class flume (
   }
 
   exec { 'unpack flume' :
-    command => "tar -zxf /tmp/flume.tar.gz -C ${install_dir}",
+    command => "tar -zxf /tmp/flume.tar.gz -C ${install_dir_path}",
     path    => $path,
     user    => $user,
     group   => $user,
-    creates => "${flume_home}-1.7.0",
+    creates => "${flume_home}",
     require => Exec['download flume'],
   }
 
-  file { '/home/hadoop/apache-flume-1.7.0-bin/conf/flume-conf.properties' :
+  file { "${flume_home}/conf/flume-conf.properties" :
     ensure  => file,
     content => template('flume/flume-conf.properties.erb'),
     require => Exec['unpack flume'],
   }
 
-  file { '/home/hadoop/apache-flume-1.7.0-bin/conf/flume-env.sh' :
+  file { "${flume_home}/conf/flume-env.sh" :
     ensure  => file,
     content => template('flume/flume-env.sh.erb'),
     require => Exec['unpack flume'],
