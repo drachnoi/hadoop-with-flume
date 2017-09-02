@@ -4,6 +4,7 @@ group : "hadoop"
 install_dir : "/home/hadoop"
 
 hadoop::download_mirror: "http://xenia.sote.hu/ftp/mirrors/www.apache.org/hadoop/common/hadoop-3.0.0-alpha1/hadoop-3.0.0-alpha1.tar.gz"
+hadoop::hadoop_dir_name: "hadoop-3.0.0-alpha1"
 
 flume::download_mirror: "http://xenia.sote.hu/ftp/mirrors/www.apache.org/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz"
 flume::consumer_key : "your consumer key"

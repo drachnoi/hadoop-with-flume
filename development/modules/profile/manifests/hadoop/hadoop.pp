@@ -8,8 +8,7 @@ class profile::hadoop::hadoop (
   }
 
   class { 'hadoop' :
-    user        => $user,
-    install_dir => $install_dir,
-    hadoop_home => "${install_dir}/hadoop",
+    user              => $user,
+    install_dir_path  => $install_dir,
   }
 }
