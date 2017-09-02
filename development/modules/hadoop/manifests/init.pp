@@ -69,4 +69,10 @@ class hadoop (
     group   => $user,
     require => Exec['unpack hadoop'],
   }
+
+  exec { 'append hadoop to path' :
+    command => "echo export PATH=\$PATH:${hadoop_home}/bin >> /home/${user}/.bashrc",
+    path    => $path,
+    require => Exec['unpack hadoop'],
+  }
 }

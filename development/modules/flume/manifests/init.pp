@@ -38,4 +38,10 @@ class flume (
     content => template('flume/flume-env.sh.erb'),
     require => Exec['unpack flume'],
   }
+
+  exec { 'append flume to path' :
+    command => "echo export PATH=\$PATH:${flume_home}/bin >> /home/${user}/.bashrc",
+    path    => $path,
+    require => Exec['unpack hadoop'],
+  }
 }
