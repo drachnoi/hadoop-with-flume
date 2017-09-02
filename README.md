@@ -6,16 +6,11 @@ This is part of a school project.
 * Virtualbox
 * Vagrant
 
-### Install the following plugins for Vagrant: ###
-```
-vagrant plugin install vagrant-r10k
-vagrant plugin install puppet
-```
 ## Usage ##
 
 ### After you cloned the repsitory: ###
 ```
-cd hadoop
+cd hadoop-with-flume
 vagrant up
 vagrant ssh
 sudo su hadoop
