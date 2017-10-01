@@ -31,3 +31,5 @@ export JAVA_HOME=<%= @java_default_home %>
 
 # Note that the Flume conf directory is always included in the classpath.
 #FLUME_CLASSPATH=""
+
+export CLASSPATH=$CLASSPATH:/<%= @flume_home %>/lib/*
