@@ -3,6 +3,7 @@ class flume (
   $consumer_key_secret = undef,
   $access_token        = undef,
   $access_token_secret = undef,
+  $hdfs_path           = undef,
   $user                = undef,
   $download_mirror     = undef,
   $install_dir_path    = undef,
