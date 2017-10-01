@@ -20,7 +20,7 @@ You can find hadoop and flume in the hadoop user home directory. Use the Hadoop 
 ### From the host machine you can use the following urls to reach Hadoop: ###
 
 * Resource Manager: http://192.168.33.15:8088
-* Web UI of the NameNode daemon: http://192.168.33.15:50070
+* Web UI of the NameNode daemon: http://192.168.33.15:9870
 * HDFS NameNode web interface: http://192.168.33.15:8042
 
 ## Known issues ##
