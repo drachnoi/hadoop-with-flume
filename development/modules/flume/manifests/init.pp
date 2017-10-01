@@ -29,12 +29,16 @@ class flume (
 
   file { "${flume_home}/conf/flume-conf.properties" :
     ensure  => file,
+    owner   => $user,
+    group   => $user,
     content => template('flume/flume-conf.properties.erb'),
     require => Exec['unpack flume'],
   }
 
   file { "${flume_home}/conf/flume-env.sh" :
     ensure  => file,
+    owner   => $user,
+    group   => $user,
     content => template('flume/flume-env.sh.erb'),
     require => Exec['unpack flume'],
   }
