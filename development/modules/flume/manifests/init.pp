@@ -4,6 +4,7 @@ class flume (
   $access_token        = undef,
   $access_token_secret = undef,
   $hdfs_path           = undef,
+  $hadoop_prefix       = undef,
   $twitter_keywords    = undef,
   $user                = undef,
   $download_mirror     = undef,
