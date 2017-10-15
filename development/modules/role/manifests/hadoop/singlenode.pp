@@ -15,4 +15,9 @@ class role::hadoop::singlenode (
       user        => $user,
       install_dir => $install_dir,
     }
+
+    class { 'profile::drill::drill' :
+      user        => $user,
+      install_dir => $install_dir,
+    }
 }
