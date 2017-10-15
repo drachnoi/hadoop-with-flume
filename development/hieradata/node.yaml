@@ -9,7 +9,7 @@ hadoop::hadoop_dir_name: "hadoop-3.0.0-alpha4"
 flume::download_mirror: "http://xenia.sote.hu/ftp/mirrors/www.apache.org/flume/1.7.0/apache-flume-1.7.0-bin.tar.gz"
 flume::flume_dir_name: "apache-flume-1.7.0-bin"
 flume::hdfs_path: "hdfs://localhost:9000/user/hadoop/twitter_data/"
-flume::twitter_keywords: "tutorials point,java, bigdata, mapreduce, mahout, hbase, nosql"
+flume::twitter_keywords: "keywords"
 flume::hadoop_prefix: "/home/hadoop/hadoop-3.0.0-alpha4"
 
 flume::consumer_key : "your consumer key"
