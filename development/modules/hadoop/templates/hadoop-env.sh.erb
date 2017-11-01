@@ -111,7 +111,7 @@ esac
 # and clients (i.e., hdfs dfs -blah).  These get appended to HADOOP_OPTS for
 # such commands.  In most cases, # this should be left empty and
 # let users supply it on the command line.
-# export HADOOP_CLIENT_OPTS=""
+ export HADOOP_CLIENT_OPTS="-Xmx2048m $HADOOP_CLIENT_OPTS"
 
 #
 # A note about classpaths.
