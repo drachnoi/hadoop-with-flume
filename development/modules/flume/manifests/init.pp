@@ -46,12 +46,6 @@ class flume (
     require => Exec['unpack flume'],
   }
 
-  exec { 'append flume to path' :
-    command => "echo export PATH=\$PATH:${flume_home}/bin >> /home/${user}/.bashrc",
-    path    => $path,
-    require => Exec['unpack flume'],
-  }
-
   flume::source { 'twitter source' :
     path_to_repo => $flume_home,
     user         => $user,
