@@ -26,7 +26,7 @@ class flume (
     path    => $path,
     user    => $user,
     group   => $user,
-    creates => "${flume_home}",
+    creates => $flume_home,
     require => Exec['download flume'],
   }
 
