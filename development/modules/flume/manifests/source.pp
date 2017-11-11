@@ -32,5 +32,4 @@ define flume::source (
     require  => Exec['build flume source'],
     unless   => "ls ${path_to_repo}/lib | grep flume-sources-1.0-SNAPSHOT.jar",
   }
-
 }
