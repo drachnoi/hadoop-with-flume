@@ -51,4 +51,9 @@ class flume (
     path    => $path,
     require => Exec['unpack flume'],
   }
+
+  flume::source { 'twitter source' :
+    path_to_repo => $flume_home,
+    user         => $user,
+  }
 }
